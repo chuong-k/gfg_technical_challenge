@@ -1,5 +1,7 @@
 import os
 import json
+import sys
+sys.path.append('/opt/spark/work-dir/gfg_technical_challenge/')
 
 from typing import Dict
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType

@@ -1,5 +1,6 @@
 import os
 import sys
+sys.path.append('/opt/spark/work-dir/gfg_technical_challenge/')
 from pathlib import Path
 
 from pyspark.sql import DataFrame
@@ -11,7 +12,7 @@ from etl.utils.spark_utils import init_spark
 
 
 # Can be replaced with a ledger module in future
-SCHEMA_PATH = './config/schema/data_schema.json'
+SCHEMA_PATH = '/opt/spark/work-dir/gfg_technical_challenge/etl/config/schema/data_schema.json'
 FILE_TYPE = 'json'
 
 # Init config_loader

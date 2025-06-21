@@ -3,7 +3,7 @@ version: '3'
 x-spark-common: &spark-common
   image: spark-image:latest
   build:
-    context: ./env/spark
+    context: ./setup/spark
     dockerfile: Dockerfile
   env_file:
     - .env.spark
@@ -22,7 +22,8 @@ services:
       - "3000:3000"
     volumes:
       - spark-logs:/opt/spark/spark-events
-      - ./data/zip_data/test_data.zip:/opt/spark/work-dir/gfg_technical_challenge/data/zip_data/test_data.zip  # Specific mount path
+      - ./data/zip_data/test_data.zip:/opt/spark/work-dir/gfg_technical_challenge/data/zip_data/test_data.zip  # Specific mount path for data
+      - ./etl:/opt/spark/work-dir/gfg_technical_challenge/etl # Specific mounth path for loading data
   
   spark-history-server:
     <<: *spark-common
@@ -33,9 +34,9 @@ services:
     ports:
       - '18080:18080'
 
-#  spark-worker:
-#    <<: *spark-common
-#    entrypoint: ['/opt/spark/work-dir/entrypoint.sh', 'worker']
+  spark-worker:
+    <<: *spark-common
+    entrypoint: ['/opt/spark/work-dir/entrypoint.sh', 'worker']
 
 volumes:
   spark-logs:

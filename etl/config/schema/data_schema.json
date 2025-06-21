@@ -1,7 +1,7 @@
 {
-  "zip_dir": "/opt/spark/work-dir/gfg_technical_challenge/zip_data",
+  "zip_dir": "/opt/spark/work-dir/gfg_technical_challenge/data/zip_data",
   "zip_name": "test_data.zip",
-  "unzip_dir": "/opt/spark/work-dir/gfg_technical_challenge/unzip_data",
+  "unzip_dir": "/opt/spark/work-dir/gfg_technical_challenge/data/unzip_data",
   "unzip_name": "data.json",
   "unzip_schema": [
     {"field_name": "customer_id", "field_type": "string"},
