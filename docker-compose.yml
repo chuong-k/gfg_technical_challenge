@@ -1,0 +1,41 @@
+version: '3'
+
+x-spark-common: &spark-common
+  image: spark-image:latest
+  build:
+    context: ./setup/spark
+    dockerfile: Dockerfile
+  env_file:
+    - .env.spark
+  volumes:
+    - spark-logs:/opt/spark/spark-events
+
+services:
+  spark-master:
+    <<: *spark-common
+    container_name: spark-master
+    entrypoint: ['./entrypoint.sh', 'master']
+    ports:
+      - "4040:4040"
+      - "9090:8080"
+      - "7077:7077"
+      - "3000:3000"
+    volumes:
+      - spark-logs:/opt/spark/spark-events
+      - ./data/test_data.zip:/opt/spark/work-dir/gfg_technical_challenge/data/test_data.zip  # Specific mount path
+  
+  spark-history-server:
+    <<: *spark-common
+    container_name: spark-history
+    entrypoint: ['./entrypoint.sh', 'history']
+    depends_on:
+      - spark-master
+    ports:
+      - '18080:18080'
+  
+  spark-worker:
+    <<: *spark-common
+    entrypoint: ['./entrypoint.sh', 'worker']
+
+volumes:
+  spark-logs:
