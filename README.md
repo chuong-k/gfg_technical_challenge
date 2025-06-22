@@ -150,7 +150,7 @@ After that, the Spark DF is written out to a staging area `gfg_technical_challen
 
 **Stage 2** : _INGEST_ - \[DONE\]
 
-The `main.py` script also handle loading the data to DuckDB after complete writing to staging area.
+The `main.py` script already do the loading the data to DuckDB after writing file.
 
 &nbsp;
 
