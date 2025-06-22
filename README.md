@@ -11,6 +11,7 @@ This project is a technical assignment for a data engineering role. It utilizes 
 - [How to Run](#how-to-run)
 - [Output](#output)
 - [Notes](#notes)
+- [Task](#task)
 - [Author](#author)
 
 &nbsp;
@@ -120,8 +121,62 @@ DuckDB is a new, modern tool for data analytic works
 
 The core of most modern usually require a heavy-weight SQL tools for data exploration such as PostGreDB or Hive. DuckDB offers an alternative way to validate and analyze data in a fast, compact and friend way.
 
+&nbsp;
+
+## Task
+
+Follow-up on Task in [GFG Repo](https://github.com/theiconic/technical-challenges/tree/master/data/data-engineer)
+
+
+**Stage 1** : _CLEAN_ - \[DONE\]
+
+The repo used an Bash script to unpack the data. The passphrase is an unserialized lowercase SHA-256 hash of the keyword send over by email. The script automatically handle this.
+
+When exploring data, it seems payment columns are incorrect (`cc_payments`, `paypal_payments`, `afterpay_payments`, `apple_payments`).\
+Based on description from GFG Repo, these columns should contain the number of times credit card, PayPal, AfterPay and ApplePay was used as payment method. However, it does not seem to be the case, as there are only `0` and `1` values in these columns, denoted that a credit card was used or not, PayPal was used or not, etc...
+
+The meaning of these columns is not the number of times a payment method was used, it is whether or not such payment method was used when purchasing the item.
+
+
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/94fda221-6e97-4539-b3c1-e4fae298e0d6" />
 
 &nbsp;
+
+With that idea in mind, the `main.py` script will load the unzip data using Spark DF and perform transformation on it to correct this misunderstanding. The column names are still being kept the same, but converted to Boolean (`True`, `False`).
+
+After that, the Spark DF is written out to a staging area `gfg_technical_challenge/data/output`
+
+&nbsp;
+
+**Stage 2** : _INGEST_ - \[DONE\]
+
+The `main.py` script also handle loading the data to DuckDB after complete writing to staging area.
+
+&nbsp;
+
+**Stage 3** : _ANALYZE_ - \[DONE\]
+1. **What was the total revenue to the nearest dollar for customers who have paid by credit card?** - 5372281 (or 5372282)
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/4c6dfbab-aa5c-4b3d-852b-7d8ea9f88241" />
+
+2. **What percentage of customers who have purchased female items have paid by credit card?** - 48.808%
+
+3. **What was the average revenue for customers who used either iOS, Android or Desktop?** - 1484.889
+
+4. **We want to run an email campaign promoting a new mens luxury brand. Can you provide a list of customers we should send to?** - \
+This is a tricky one since in the data we do not keep track of customer's gender. As such, we can only work off the assumption that customer who purchased male items are male customers. This is not entirely true, of course, since female can also purchase male clothing, and vice versa. We can observe the distribution of male items purchased, and choose the cut-off that suitable for our campaign.
+
+&nbsp;
+
+**Stage 4** : _PRODUCTIONISATION_
+
+To start off, we can use introduce crontab to automate our codes. However, in the long run, we need to also include extra tools because crontab is not flexible enough. As the number of analytic queries grew, we need orchestration tools such as Airflow to help manage. Dependency between analytic notebooks/queries is unavoidable in production environment, especially when complexity grow over time. 
+
+Having the ability to manage & orchestrate these workflow and dependency is invaluable. It also helps with onboarding and training employees and co-workers because they do not need to spend as much time shuffling through numerous notebooks/queries to understand how the pipeline works. One simple look at the visualization of the workflow would do.
+
+There also a need for data monitoring and alert in place to handle unsual ingestion and raise warning for action when incidents happens.
+
+&nbsp;
+
 ## Author
 Kiet Chuong
 
