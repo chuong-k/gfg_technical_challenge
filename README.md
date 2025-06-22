@@ -181,5 +181,5 @@ There also a need for data monitoring and alert in place to handle unsual ingest
 Kiet Chuong
 
 - GitHub: @chuong-k (Lost access to my old account)
-- LinkedIn: linkedin.com/in/kietchuong
+- LinkedIn: linkedin.com/in/ctkiet/
 
