@@ -6,6 +6,9 @@ class ConfigEnum(str, Enum):
     UNZIP_DIR = 'unzip_dir'
     UNZIP_NAME = 'unzip_name'
     UNZIP_SCHEMA = 'unzip_schema'
+    OUTPUT_DIR = 'output_dir'
+    OUTPUT_NUM_PARTITION = 'output_num_partition'
+    DB_FILE = 'db_file'
 
 
 class SchemaEnum(str, Enum):

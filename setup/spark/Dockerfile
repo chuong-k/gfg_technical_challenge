@@ -1,10 +1,18 @@
 FROM deltaio/delta-docker:latest
-# latest is at 1.0.0_3.0.0, 
+# latest is at 1.0.0_3.0.0,
+
 
 USER root
 
+RUN /opt/spark/bin/spark-submit \
+  --packages io.delta:delta-core_2.12:2.3.0,org.apache.hadoop:hadoop-aws:3.3.2,org.postgresql:postgresql:42.7.3 \
+  --class dummy.Main \
+  dummy.jar || true
+
 COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
+RUN pip install duckdb
+
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \

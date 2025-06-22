@@ -45,5 +45,8 @@
     {"field_name": "average_discount_onoffer", "field_type": "float"},
     {"field_name": "average_discount_used", "field_type": "float"},
     {"field_name": "revenue", "field_type": "float"}
-  ]
+  ],
+  "output_dir": "/opt/spark/work-dir/gfg_technical_challenge/data/output",
+  "output_num_partition": 1,
+  "db_file": "/opt/spark/work-dir/gfg_technical_challenge/db/analysis.duckdb"
 }

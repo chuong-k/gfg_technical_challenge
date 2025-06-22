@@ -45,6 +45,15 @@ class ConfigLoader:
     def load_raw_full_dir(self) -> str:
         return os.path.join(self.load_raw_dir(), self.load_raw_name())
 
+    def load_output_dir(self) -> str:
+        return self.config[ConfigEnum.OUTPUT_DIR]
+
+    def load_db_file(self) -> str:
+        return self.config[ConfigEnum.DB_FILE]
+
+    def load_output_num_partition(self) -> int:
+        return int(self.config[ConfigEnum.OUTPUT_NUM_PARTITION])
+
     def load_schema(self) -> StructType:
         def build_schema(schema: Dict) -> StructType:
             return StructType([

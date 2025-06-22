@@ -23,7 +23,8 @@ services:
     volumes:
       - spark-logs:/opt/spark/spark-events
       - ./data/zip_data/test_data.zip:/opt/spark/work-dir/gfg_technical_challenge/data/zip_data/test_data.zip  # Specific mount path for data
-      - ./etl:/opt/spark/work-dir/gfg_technical_challenge/etl # Specific mounth path for loading data
+      - ./etl:/opt/spark/work-dir/gfg_technical_challenge/etl # Specific mount path for loading data
+      - ./db/:/opt/spark/work-dir/gfg_technical_challenge/db/ # Specific mount path for ingestion DB
   
   spark-history-server:
     <<: *spark-common
