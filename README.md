@@ -1,5 +1,5 @@
 # GFG Technical Challenge
-This project is a technical assignment completed for a data engineering role. It demonstrates the use of **PySpark**, **Docker**, and **PostgreSQL** to build an end-to-end ETL pipeline for transforming and loading transaction data.
+This project is a technical assignment for a data engineering role. It utilizes **PySpark**, **Docker**, and **DuckDB** to build an ETL pipeline for transforming and loading data.
 
 ---
 &nbsp;
@@ -25,7 +25,7 @@ The goal of this project is to:
 The pipeline is designed to be simple, modular, and reproducible for technical demonstration purposes.
 
 &nbsp;
-## Technologies
+## Technologies Used
 
 - **Python**
 - **Apache Spark (PySpark)**
@@ -41,22 +41,17 @@ The pipeline is designed to be simple, modular, and reproducible for technical d
 
 &nbsp;
 ## How to Run
-1. Clone the repo
-```bash
-git clone git@github.com:chuong-k/gfg_technical_challenge.git 
+
+1. git clone git@github.com:chuong-k/gfg_technical_challenge.git\
 & cd gfg_technical_challenge
-```
-&nbsp;
-
-2. Start Docker services `docker compose up --build -d --scale spark-worker=2`
 
 &nbsp;
 
-3. Execute command to extract zip file 
-```bash
-docker exec spark-master bash /opt/spark/work-dir/entrypoint.sh`
-```
-This will unzip the zip file placed under /data/zip_data/test_data.zip. This file was acquired from GFG technical assessment repository https://github.com/theiconic/technical-challenges
+2. Start Docker services  `docker compose up --build -d --scale spark-worker=2`
+
+&nbsp;
+
+3. Execute command to extract zip file  `docker exec spark-master bash /opt/spark/work-dir/entrypoint.sh`
 
 &nbsp;
 
@@ -64,12 +59,9 @@ This will unzip the zip file placed under /data/zip_data/test_data.zip. This fil
 ```bash
 docker exec spark-master bash -c "jupyter notebook --ip=0.0.0.0 --port=3000 --allow-root"
 ```
-Take the last URL printed out in the console log and pasted it over to your browser and the Notebook will open up.
+Take the last URL printed out in the console log and pasted it over to your browser and the Notebook will open up
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/b622803c-594c-4210-825d-e544c3c8cfec" class="center"/>
 
-
-<img width="1438" alt="Image" src="https://github.com/user-attachments/assets/b622803c-594c-4210-825d-e544c3c8cfec" />
-
-&nbsp;
 &nbsp;
 
 5. Execute the ETL script
@@ -79,3 +71,8 @@ docker exec -w  /opt/spark/work-dir/gfg_technical_challenge/etl spark-master spa
 
 &nbsp;
 ## Output
+
+A DB object file will appear in `gfg_technical_challenge/db`, which can be seen in both Jupyter or in the project repo via your favorite IDE.
+
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/4a1f123f-b022-47c5-bec8-08de98511c87" />
+
