@@ -60,6 +60,7 @@ The pipeline is designed to be simple, modular, and reproducible for technical d
 docker exec spark-master bash -c "jupyter notebook --ip=0.0.0.0 --port=3000 --allow-root"
 ```
 Take the last URL printed out in the console log and pasted it over to your browser and the Notebook will open up
+
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/b622803c-594c-4210-825d-e544c3c8cfec" class="center"/>
 
 &nbsp;
@@ -72,7 +73,59 @@ docker exec -w  /opt/spark/work-dir/gfg_technical_challenge/etl spark-master spa
 &nbsp;
 ## Output
 
-A DB object file will appear in `gfg_technical_challenge/db`, which can be seen in both Jupyter or in the project repo via your favorite IDE.
+- A DB object file will appear in `gfg_technical_challenge/db`, which can be seen in both Jupyter or in the project repo via your favorite IDE.
 
 <img width="1440" alt="Image" src="https://github.com/user-attachments/assets/4a1f123f-b022-47c5-bec8-08de98511c87" />
+
+&nbsp;
+
+- Follow the instruction of [DuckDB CLI](https://duckdb.org/docs/installation/) to install. We will use this to view the data.
+
+&nbsp;
+
+- Once done, in your terminal, execute below commands to connect to DuckDB.
+```bash
+cd gfg_technical_challenge
+duckdb db/analysis.duckdb
+```
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/3714d2c9-8d25-46a2-809c-2d2c55550b9d" />
+
+&nbsp;
+
+- Alternatively, installing DuckDB CLI also give user access to a sleek GUI to perform data exploration [DuckDB GUI](https://duckdb.org/2025/03/12/duckdb-ui.html#introducing-the-duckdb-ui)
+&nbsp;
+```bash
+ duckdb -ui
+```
+<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/39756daa-32ec-49cc-90cc-2d648bbf074d" />
+
+
+&nbsp;
+## Notes
+**Why Spark?**\
+Spark should not be too alien with people in the data scene. 
+1. It is a hardened, battle-tested framework that has served many data stacks in many different orgs.
+2. Designed for distributed computing, making it scale more easily. 
+3. Powerful and flexible API, ideal to handle complex requirement for data - transform, filter, aggregation
+4. Integration with other eco-system easily (HDFS, Databases, Files, etc...)
+
+Although it is much overkill for this assignment.
+
+&nbsp;
+
+**Why DuckDB?**\
+DuckDB is a new, modern tool for data analytic works
+1. DuckDB is lightweight and easy to setup and use. It is perfect for local deployment
+2. Support for Parquet file out of the box. Very good for Spark integration
+3. Offer both connection and DB object file access mode
+
+The core of most modern usually require a heavy-weight SQL tools for data exploration such as PostGreDB or Hive. DuckDB offers an alternative way to validate and analyze data in a fast, compact and friend way.
+
+
+&nbsp;
+## Author
+Kiet Chuong
+
+- GitHub: @chuong-k (Lost access to my old account)
+- LinkedIn: linkedin.com/in/kietchuong
 
