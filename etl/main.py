@@ -54,10 +54,10 @@ def read_data(spark: SparkSession) -> DataFrame:
 def transform(df: DataFrame) -> DataFrame:
     df_transormed = (
         df
-            .withColumn("used_cc_payment", F.when(F.col("cc_payments") == 1, True).otherwise(False))
-            .withColumn("used_paypal_payment", F.when(F.col("paypal_payments") == 1, True).otherwise(False))
-            .withColumn("used_afterpay_payment", F.when(F.col("afterpay_payments") == 1, True).otherwise(False))
-            .withColumn("used_apple_payment", F.when(F.col("apple_payments") == 1, True).otherwise(False))
+            .withColumn("cc_payments", F.when(F.col("cc_payments") == 1, True).otherwise(False))
+            .withColumn("paypal_payments", F.when(F.col("paypal_payments") == 1, True).otherwise(False))
+            .withColumn("afterpay_payments", F.when(F.col("afterpay_payments") == 1, True).otherwise(False))
+            .withColumn("apple_payments", F.when(F.col("apple_payments") == 1, True).otherwise(False))
     )
     return df_transormed
 
