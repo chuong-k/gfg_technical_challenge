@@ -42,8 +42,11 @@ The pipeline is designed to be simple, modular, and reproducible for technical d
 &nbsp;
 ## How to Run
 
-1. git clone git@github.com:chuong-k/gfg_technical_challenge.git\
+1. 
+```bash
+git clone git@github.com:chuong-k/gfg_technical_challenge.git\
 & cd gfg_technical_challenge
+```
 
 &nbsp;
 
